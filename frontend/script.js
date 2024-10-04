@@ -152,11 +152,15 @@ document.addEventListener("DOMContentLoaded", () => {
           username: usernameInput.value,
           image: prepareImageData(capturedImage),
         };
-        await sendRequest(`${LAMBDA_FUNCTION_URL}?authType=signup`, data);
+        const res = await sendRequest(
+          `${LAMBDA_FUNCTION_URL}?authType=signup`,
+          data
+        );
         showMessage(
           "회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.",
           true
         );
+        console.log(res.msg);
         setTimeout(() => {
           window.location.href = "/"; // 로그인 페이지로 리다이렉트
         }, 2000);
@@ -187,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         if (res.result) showMessage("로그인 성공!", true);
         else showMessage("로그인 실패. 다시 시도해주세요.", false);
+        console.log(res.msg);
       } catch (error) {
         console.error(error);
       }
