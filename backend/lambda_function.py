@@ -3,7 +3,7 @@ import boto3
 import base64
 
 REGION_NAME = 'ap-northeast-2'
-BUCKET_NAME = 'face-rekognition-mc'
+BUCKET_NAME = '여기에 버킷 이름을 입력하세요'
 
 # client
 s3 = boto3.client("s3", region_name=REGION_NAME)
