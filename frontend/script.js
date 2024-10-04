@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const LAMBDA_FUNCTION_URL = "여기에 람다 함수 URL을 입력하세요";
+  console.log("LAMBDA_FUNTION_URL: ", LAMBDA_FUNCTION_URL);
   const usernameInput = document.getElementById("username");
   const video = document.getElementById("camera");
   const canvas = document.getElementById("canvas");
@@ -151,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
           username: usernameInput.value,
           image: prepareImageData(capturedImage),
         };
-        await sendRequest(LAMBDA_FUNCTION_URL, data);
+        await sendRequest(`${LAMBDA_FUNCTION_URL}?authType=signup`, data);
         showMessage(
           "회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.",
           true
@@ -180,7 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
           username: usernameInput.value,
           image: prepareImageData(capturedImage),
         };
-        const res = await sendRequest(LAMBDA_FUNCTION_URL, data);
+        const res = await sendRequest(
+          `${LAMBDA_FUNCTION_URL}?authType=login`,
+          data
+        );
         if (res.result) showMessage("로그인 성공!", true);
         else showMessage("로그인 실패. 다시 시도해주세요.", false);
       } catch (error) {
