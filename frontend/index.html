@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication by Face Rekognition</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="auth-box">
+        <h1 class="logo">Outstagram</h1>
+        <form class="auth-form">
+          <input id="username" type="text" placeholder="사용자 이름" required />
+          <div class="camera-container">
+            <video id="camera" autoplay></video>
+            <canvas id="canvas" style="display: none"></canvas>
+            <img id="preview" style="display: none" />
+            <button
+              type="button"
+              id="expandBtn"
+              class="btn btn-expand"
+              style="display: none"
+            >
+              확대
+            </button>
+          </div>
+          <div id="initialButtons">
+            <button type="button" id="captureBtn" class="btn btn-primary">
+              사진 찍기
+            </button>
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              style="display: none"
+            />
+            <button type="button" id="uploadBtn" class="btn btn-secondary">
+              파일 업로드
+            </button>
+          </div>
+          <div id="afterCaptureButtons" style="display: none">
+            <button type="button" id="retakeBtn" class="btn btn-secondary">
+              다시 찍기
+            </button>
+            <button type="submit" id="loginBtn" class="btn btn-primary">
+              로그인
+            </button>
+          </div>
+        </form>
+        <p id="errorMessage" class="error-message">
+          카메라를 시작할 수 없습니다. 브라우저 설정을 확인해주세요.
+        </p>
+        <p id="statusMessage" class="status-message" style="display: none"></p>
+      </div>
+      <div class="switch-auth">
+        <p>계정이 없으신가요? <a href="/signup">가입하기</a></p>
+      </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImage" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
